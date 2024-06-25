@@ -50,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
         <input type="submit" value="Create Ticket">
     </form>
+    <a href="index.php">Back to Backlog</a>
 </body>
 
 </html>

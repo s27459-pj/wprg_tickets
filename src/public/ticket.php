@@ -38,12 +38,11 @@ $closedAt = $ticket->getClosedAt();
     <p>Priority: <?php echo $ticket->getPriority()->value ?></p>
     <p>Assignee: <?php echo $assigneeString ?></p>
     <p>Created at: <?php echo $ticket->getCreatedAt()->format('Y-m-d H:i:s') ?></p>
-    <?php
-    if ($closedAt !== null) {
-        echo '<p>Closed at: ' . $closedAt->format('Y-m-d H:i:s') . '</p>';
-    }
-    ?>
+    <?php if ($closedAt !== null): ?>
+        <p>Closed at: <?php echo $closedAt->format('Y-m-d H:i:s') ?></p>
+    <?php endif ?>
     <p>Deadline: <?php echo $ticket->getDeadline()->format('Y-m-d H:i:s') ?></p>
+    <a href="index.php">Back to Backlog</a>
 </body>
 
 </html>
