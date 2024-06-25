@@ -40,6 +40,20 @@ class Ticket
         $this->created = new DateTime();
     }
 
+    public function create(
+        string $title,
+        Priority $priority,
+        ?User $assignee,
+        DateTime $deadline
+    ): self {
+        $this->title = $title;
+        $this->priority = $priority;
+        $this->assignee = $assignee;
+        $this->deadline = $deadline;
+
+        return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -48,11 +62,6 @@ class Ticket
     public function getTitle(): string
     {
         return $this->title;
-    }
-
-    public function setTitle(string $title): void
-    {
-        $this->title = $title;
     }
 
     public function getPriority(): Priority
@@ -84,11 +93,6 @@ class Ticket
     public function getDeadline(): ?DateTime
     {
         return $this->deadline;
-    }
-
-    public function setDeadline(DateTime $deadline): void
-    {
-        $this->deadline = $deadline;
     }
 }
 
