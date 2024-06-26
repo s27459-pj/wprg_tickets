@@ -51,3 +51,23 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
 - [ ] Panel administracyjny
   - [ ] Zarządzanie kontami
   - [ ] Zarządzanie działami
+
+# Wymagania funkcjonalne
+- [ ] użycie formularzy i ich funkcjonalności - odbieranie i przetwarzanie danych
+- [ ] zapisywanie do pliku danych - np. zrzut bazy danych, zapis danych z formularza itp.
+- [ ] zapisywanie do bazy danych
+- [ ] odczytywanie z bazy danych
+- [ ] update i usuwanie z bazy danych
+- [ ] system logowania
+- [ ] użycie sesji w projekcie, nie sztuczne, tylko takie by pozwalało realnie zobrazować ich funkcjonalność
+- [ ] użycie ciasteczek - utworzenie oraz realne skorzystanie z nich
+- [ ] użycie pętli, instrukcje warunkowe, tablice, funkcji
+- [ ] projekt realizujemy w oparciu o programowanie obiektowe
+- [ ] użycie czegoś z PHP, co nie było pokazywane na zajęciach - biblioteka, narzędzie, konstrukcja, temat (wymagane omówienie) (dodatkowe)
+- [ ] hostowanie strony na serwerze zewnętrznym (dodatkowe)
+
+# Wymagania niefunkcjonalne
+- [ ] Przejrzysty kod - np. rozbicie na pliki, klasy, metody, stosowanie pętli zamiast printowania na sztywno
+- [ ] Brak widocznych błędów komunikowanych przez język
+- [ ] Projekt się “kompiluje” - brak problemów przy oddawaniu projektu
+- [ ] “Ładny”/przejrzysty projekt - np. ładnie sformatowany formularz, jednolity; widok strony bez zbędnych elementów, czy rozjeżdżających się komponentówpp
