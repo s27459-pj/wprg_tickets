@@ -43,12 +43,10 @@ class Ticket
     public function create(
         string $title,
         Priority $priority,
-        ?User $assignee,
         DateTime $deadline
     ): self {
         $this->title = $title;
         $this->priority = $priority;
-        $this->assignee = $assignee;
         $this->deadline = $deadline;
 
         return $this;

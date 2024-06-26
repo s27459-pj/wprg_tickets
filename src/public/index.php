@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "GET") {
     exit("Unsupported HTTP method");
 }
 
-$ticketRepository = $entityManager->getRepository("Ticket");
+$ticketRepository = $entityManager->getRepository(Ticket::class);
 $tickets = $ticketRepository->findAll();
 ?>
 

@@ -1,15 +1,20 @@
 <?php
 require_once __DIR__ . "/../../bootstrap.php";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+function handle_create($entityManager)
+{
     // TODO)) Validation
     $title = $_POST["title"];
     $priority = $_POST["priority"];
-    // TODO)) Assignee
+    $assignee = $_POST["assignee"];
     $deadline = new DateTime($_POST["deadline"]);
 
     $ticket = new Ticket();
-    $ticket->create($title, Priority::from($priority), null, $deadline);
+    $ticket->create($title, Priority::from($priority), $deadline);
+    if ($assignee !== "-1") {
+        $user = $entityManager->find(User::class, $assignee);
+        $ticket->setAssignee($user);
+    }
 
     $entityManager->persist($ticket);
     $entityManager->flush();
@@ -17,7 +22,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "<p>Created Ticket with ID {$ticket->getId()}";
     echo "<a href=\"ticket.php?id={$ticket->getId()}\">View Ticket</a>";
     echo "</p>";
+
 }
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    handle_create($entityManager);
+    return;
+}
+
+if ($_SERVER["REQUEST_METHOD"] !== "GET") {
+    http_response_code(405);
+    return;
+}
+
+$users = $entityManager->getRepository(User::class)->findAll();
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +60,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <option value="low">Low</option>
                 <option value="medium" selected>Medium</option>
                 <option value="high">High</option>
+            </select>
+        </div>
+        <div class="form-field">
+            <label for="assignee">Assignee</label>
+            <select id="assignee" name="assignee">
+                <option value="-1">Unassigned</option>
+                <?php foreach ($users as $user): ?>
+                    <option value="<?php echo $user->getId() ?>">
+                        <?php echo $user->getUsername() ?>
+                    </option>
+                <?php endforeach ?>
             </select>
         </div>
         <div class="form-field">
