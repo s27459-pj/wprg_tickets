@@ -52,6 +52,18 @@ class Ticket
         return $this;
     }
 
+    public function update(
+        string $title,
+        Priority $priority,
+        DateTime $deadline
+    ): self {
+        $this->title = $title;
+        $this->priority = $priority;
+        $this->deadline = $deadline;
+
+        return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -72,10 +84,27 @@ class Ticket
         return $this->assignee;
     }
 
-    public function setAssignee(User $assignee): void
+    public function setAssignee(?User $assignee): void
     {
-        $assignee->addAssignedTicket($this);
+        // Unassign
+        if ($assignee === null && $this->assignee !== null) {
+            $this->assignee->removeAssignedTicket($this);
+            $this->assignee = null;
+            return;
+        }
+        // Keep current assignee
+        if ($assignee === $this->assignee) {
+            return;
+        }
+
+        // Reassign
+        // Unassign current
+        if ($this->assignee !== null) {
+            $this->assignee->removeAssignedTicket($this);
+        }
+        // Assign new
         $this->assignee = $assignee;
+        $this->assignee->addAssignedTicket($this);
     }
 
     public function getCreatedAt(): DateTime

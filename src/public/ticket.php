@@ -34,8 +34,11 @@ $closedAt = $ticket->getClosedAt();
 
 <body>
     <h1><?php echo $ticket->getTitle() ?></h1>
+    <a href="edit_ticket.php?id=<?php echo $ticket->getId() ?>">edit</a>
+    <a href="delete_ticket.php?id=<?php echo $ticket->getId() ?>">delete</a>
+
     <p>Status: <?php echo $status ?></p>
-    <p>Priority: <?php echo $ticket->getPriority()->value ?></p>
+    <p>Priority: <?php echo ucwords($ticket->getPriority()->value) ?></p>
     <p>Assignee: <?php echo $assigneeString ?></p>
     <p>Created at: <?php echo $ticket->getCreatedAt()->format('Y-m-d H:i:s') ?></p>
     <?php if ($closedAt !== null): ?>

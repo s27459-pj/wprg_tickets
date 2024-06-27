@@ -23,15 +23,16 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
     - [ ] Tworzenie działów
     - [ ] Dodawanie użytkowników do działów
   - [ ] Kierownik działu
-    - [ ] Tworzenie/edytowanie/usuwanie ticketów (w swoim dziale)
-    - [ ] Przypisywanie osób do ticketów
-  - [ ] Użytkonik
+    - [x] Tworzenie/edytowanie/usuwanie ticketów (w swoim dziale)
+    - [x] Przypisywanie osób do ticketów
+  - [ ] Użytkownik
     - [ ] Dodawanie komentarzy do ticketów
     - [ ] Oznaczanie ticketu za wykonany
     - [ ] Reset hasła
   - [ ] Niezalogowany
-    - [ ] Przeglądanie ticketów
+    - [x] Przeglądanie ticketów
     - [ ] Logowanie
+- [ ] Permisje do odpowiednich akcji
 - [ ] Ticket
   - tytuł
   - priorytet
@@ -42,7 +43,7 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
   - data zamknięcia
   - data deadline
 - [ ] Przechowywanie załączników w katalogu
-- [ ] Formularz do tworzenia nowego ticketu
+- [x] Formularz do tworzenia nowego ticketu
 - [ ] Przeglądanie ticketów
   - [ ] Dla użytkownika
   - [ ] Dla działu

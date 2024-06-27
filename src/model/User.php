@@ -46,4 +46,9 @@ class User
     {
         $this->assignedTickets[] = $ticket;
     }
+
+    public function removeAssignedTicket(Ticket $ticket): void
+    {
+        $this->assignedTickets->removeElement($ticket);
+    }
 }

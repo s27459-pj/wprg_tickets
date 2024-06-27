@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../../bootstrap.php";
 
-function handle_create($entityManager)
+function handleCreate($entityManager)
 {
     // TODO)) Validation
     $title = $_POST["title"];
@@ -26,7 +26,7 @@ function handle_create($entityManager)
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    handle_create($entityManager);
+    handleCreate($entityManager);
     return;
 }
 
