@@ -15,7 +15,12 @@ class User
     #[ORM\Column(type: 'string')]
     private string $username;
 
-    // TODO)) Role
+    #[ORM\Column(type: 'string')]
+    private string $password;
+
+    #[ORM\Column(type: 'string', enumType: Role::class)]
+    private Role $role = Role::USER;
+
     // TODO)) Team
 
     /** @var Collection<int, Ticket> */
@@ -25,6 +30,15 @@ class User
     public function __construct()
     {
         $this->assignedTickets = new ArrayCollection();
+    }
+
+    public function create(string $username, string $password, Role $role): self
+    {
+        $this->username = $username;
+        $this->password = $password;
+        $this->role = $role;
+
+        return $this;
     }
 
     public function getId(): ?int
@@ -37,9 +51,14 @@ class User
         return $this->username;
     }
 
-    public function setUsername(string $username): void
+    public function verifyPassword(string $password): bool
     {
-        $this->username = $username;
+        return password_verify($password, $this->password);
+    }
+
+    public function getRole(): Role
+    {
+        return $this->role;
     }
 
     public function addAssignedTicket(Ticket $ticket): void
@@ -51,4 +70,12 @@ class User
     {
         $this->assignedTickets->removeElement($ticket);
     }
+}
+
+
+enum Role: string
+{
+    case USER = 'user';
+    case TEAM_LEAD = 'team_lead';
+    case ADMIN = 'admin';
 }

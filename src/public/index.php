@@ -5,6 +5,14 @@ if ($_SERVER["REQUEST_METHOD"] !== "GET") {
     exit("Unsupported HTTP method");
 }
 
+session_start();
+if (isset($_SESSION["user"])) {
+    $userId = $_SESSION["user"];
+    $user = $entityManager->find(User::class, $userId);
+} else {
+    $user = null;
+}
+
 $ticketRepository = $entityManager->getRepository(Ticket::class);
 $tickets = $ticketRepository->findAll();
 ?>
@@ -37,6 +45,14 @@ $tickets = $ticketRepository->findAll();
         <?php endforeach ?>
     </ul>
     <a href="new_ticket.php">New Ticket</a>
+    <p>
+        <?php if ($user !== null): ?>
+            <span>Logged in as <?php echo $user->getUsername() ?></span>
+            <!-- TODO: Logout -->
+        <?php else: ?>
+            <a href="login.php">Login</a>
+        <?php endif ?>
+    </p>
 </body>
 
 </html>

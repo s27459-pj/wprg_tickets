@@ -29,9 +29,10 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
     - [ ] Dodawanie komentarzy do ticketów
     - [ ] Oznaczanie ticketu za wykonany
     - [ ] Reset hasła
-  - [ ] Niezalogowany
+  - [x] Niezalogowany
     - [x] Przeglądanie ticketów
-    - [ ] Logowanie
+    - [x] Logowanie
+    - [ ] Wylogowanie
 - [ ] Permisje do odpowiednich akcji
 - [ ] Ticket
   - tytuł
