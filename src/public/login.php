@@ -20,9 +20,7 @@ function handleLogin($entityManager)
 
 session_start();
 if (isset($_SESSION["user"])) {
-    echo "You're already logged in. ";
-    echo "<a href=\"logout.php\">Log out</a> ";
-    echo "<a href=\"index.php\">Go back</a> ";
+    header("Location: index.php");
     exit;
 }
 
@@ -37,28 +35,18 @@ if ($_SERVER["REQUEST_METHOD"] !== "GET") {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-
-<body>
-    <h1>Login</h1>
-    <form action="login.php" method="post">
-        <div class="form-field">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" autofocus>
-        </div>
-        <div class="form-field">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-        </div>
-        <button type="submit">Login</button>
-    </form>
-</body>
-
-</html>
+<?php $pageTitle = "Login";
+include (__DIR__ . "/common/top.php"); ?>
+<h1>Login</h1>
+<form action="login.php" method="post">
+    <div class="form-field">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" autofocus>
+    </div>
+    <div class="form-field">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password">
+    </div>
+    <button type="submit">Login</button>
+</form>

@@ -29,23 +29,13 @@ if ($_SERVER["REQUEST_METHOD"] !== "GET") {
 $ticket = getTicket($entityManager);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete <?php echo $ticket->getTitle() ?></title>
-</head>
-
-<body>
-    <h2>Are you sure you want to delete '<?php echo $ticket->getTitle() ?>'?</h2>
-    <form action="delete_ticket.php?id=<?php echo $ticket->getId() ?>" method="post">
-        <button type="submit">Yes</button>
-        <button type="button" onclick="window.location.href = 'ticket.php?id=<?php echo $ticket->getId() ?>'">
-            No
-        </button>
-    </form>
-</body>
-
-</html>
+<?php $pageTitle = "Delete {$ticket->getTitle()}";
+include (__DIR__ . "/common/top.php"); ?>
+<h2>Are you sure you want to delete '<?php echo $ticket->getTitle() ?>'?</h2>
+<form action="delete_ticket.php?id=<?php echo $ticket->getId() ?>" method="post">
+    <button type="submit">Yes</button>
+    <button type="button" onclick="window.location.href = 'ticket.php?id=<?php echo $ticket->getId() ?>'">
+        No
+    </button>
+</form>
