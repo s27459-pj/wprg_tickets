@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../../bootstrap.php";
+require_once __DIR__ . "/../util/util.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "GET") {
     exit("Unsupported HTTP method");
@@ -9,22 +10,38 @@ $ticketRepository = $entityManager->getRepository(Ticket::class);
 $tickets = $ticketRepository->findAll();
 ?>
 
-<?php $pageTitle = "Backlog";
+<?php $pageTitle = "Tickets";
 include (__DIR__ . "/common/top.php"); ?>
-<h1>Backlog</h1>
-<ul>
+<h1>All Tickets</h1>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Priority</th>
+        <th>Team</th>
+        <th>Assignee</th>
+        <th>Deadline</th>
+    </tr>
     <?php foreach ($tickets as $ticket):
+        $team = $ticket->getTeam();
         $assignee = $ticket->getAssignee();
+        $deadline = $ticket->getDeadline();
         ?>
-        <li>
-            <a href="ticket.php?id=<?php echo $ticket->getId() ?>">
-                <?php echo $ticket->getId() ?>
-            </a>
-            <span><?php echo $ticket->getTitle() ?></span>
-            <span><?php echo $ticket->getPriority()->value ?></span>
-            <?php if ($assignee !== null): ?>
-                <span><?php echo $assignee->getUsername() ?></span>
-            <?php endif ?>
-        </li>
+        <tr>
+            <td>
+                <a href="ticket.php?id=<?php echo $ticket->getId() ?>">
+                    <?php echo $ticket->getTitle() ?>
+                </a>
+            </td>
+            <td><?php echo getEnumDisplayName($ticket->getPriority()) ?></td>
+            <td><?php echo $team->getName() ?></td>
+            <td>
+                <?php if ($assignee !== null): ?>
+                    <?php echo $assignee->getUsername() ?>
+                <?php else: ?>
+                    Unassigned
+                <?php endif ?>
+            </td>
+            <td><?php echo $deadline->format('Y-m-d H:i') ?></td>
+        </tr>
     <?php endforeach ?>
-</ul>
+</table>
