@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../../bootstrap.php";
+require_once __DIR__ . "/../util/util.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "GET") {
     exit("Unsupported HTTP method");
@@ -31,7 +32,7 @@ include (__DIR__ . "/common/top.php"); ?>
 <a href="delete_ticket.php?id=<?php echo $ticket->getId() ?>">delete</a>
 
 <p>Status: <?php echo $status ?></p>
-<p>Priority: <?php echo ucwords($ticket->getPriority()->value) ?></p>
+<p>Priority: <?php echo getEnumDisplayName($ticket->getPriority()) ?></p>
 <p>Assignee: <?php echo $assigneeString ?></p>
 <p>Created at: <?php echo $ticket->getCreatedAt()->format('Y-m-d H:i:s') ?></p>
 <?php if ($closedAt !== null): ?>

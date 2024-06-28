@@ -1,17 +1,13 @@
 <?php
 require_once __DIR__ . "/../../bootstrap.php";
+require_once __DIR__ . "/../util/util.php";
 require_once __DIR__ . "/../util/ticket.php";
+require_once __DIR__ . "/../util/validation.php";
 
 function handleUpdate($entityManager)
 {
     $ticket = getTicket($entityManager);
-
-    $required_params = ["title", "priority", "assignee", "deadline"];
-    foreach ($required_params as $param) {
-        if (!isset($_POST[$param])) {
-            exit("Missing required parameter: $param");
-        }
-    }
+    requireParams(["title", "priority", "assignee", "deadline"]);
 
     $title = $_POST["title"];
     $priority = Priority::from($_POST["priority"]);
@@ -72,11 +68,11 @@ include (__DIR__ . "/common/top.php"); ?>
             <?php foreach (Priority::cases() as $priority): ?>
                 <?php if ($ticket->getPriority() === $priority): ?>
                     <option value="<?php echo $priority->value ?>" selected>
-                        <?php echo ucwords($priority->value) ?>
+                        <?php echo getEnumDisplayName($priority) ?>
                     </option>
                 <?php else: ?>
                     <option value="<?php echo $priority->value ?>">
-                        <?php echo ucwords($priority->value) ?>
+                        <?php echo getEnumDisplayName($priority) ?>
                     </option>
                 <?php endif ?>
             <?php endforeach ?>
