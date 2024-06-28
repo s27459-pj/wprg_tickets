@@ -46,8 +46,8 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
 - [ ] Przechowywanie załączników w katalogu
 - [x] Formularz do tworzenia nowego ticketu
 - [ ] Przeglądanie ticketów
-  - [ ] Dla użytkownika
-  - [ ] Dla działu
+  - [x] Dla użytkownika
+  - [x] Dla działu
   - [ ] Dla priorytetu
   - [ ] Dla konkretnego dnia
 - [x] Panel administracyjny
