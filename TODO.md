@@ -22,18 +22,18 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
     - [x] Tworzenie działów
     - [x] Tworzenie użytkowników
     - [x] Dodawanie użytkowników do działów
-  - [ ] Kierownik działu
+  - [x] Kierownik działu
     - [x] Tworzenie/edytowanie/usuwanie ticketów (w swoim dziale)
-    - [ ] Przypisywanie osób do ticketów
+    - [x] Przypisywanie osób do ticketów
   - [ ] Użytkownik
     - [ ] Dodawanie komentarzy do ticketów (w swoim dziale)
     - [ ] Oznaczanie ticketu za wykonany
-    - [ ] Reset hasła
   - [x] Niezalogowany
     - [x] Przeglądanie ticketów
     - [x] Logowanie
     - [x] Wylogowanie
-- [ ] Permisje do odpowiednich akcji
+    - [ ] Reset hasła
+- [x] Permisje do odpowiednich akcji
 - [x] Ticket
   - tytuł
   - priorytet
@@ -66,7 +66,7 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
 - [x] update i usuwanie z bazy danych
 - [x] system logowania
 - [x] użycie sesji w projekcie, nie sztuczne, tylko takie by pozwalało realnie zobrazować ich funkcjonalność
-- [ ] użycie ciasteczek - utworzenie oraz realne skorzystanie z nich
+- [x] użycie ciasteczek - utworzenie oraz realne skorzystanie z nich
 - [x] użycie pętli, instrukcje warunkowe, tablice, funkcji
 - [x] projekt realizujemy w oparciu o programowanie obiektowe
 - [x] użycie czegoś z PHP, co nie było pokazywane na zajęciach - biblioteka, narzędzie, konstrukcja, temat (wymagane omówienie) (dodatkowe)

@@ -1,12 +1,15 @@
 <?php
 require_once __DIR__ . "/../../bootstrap.php";
 require_once __DIR__ . "/../util/util.php";
+require_once __DIR__ . "/../util/auth.php";
 require_once __DIR__ . "/../util/ticket.php";
 require_once __DIR__ . "/../util/validation.php";
 
-function handleUpdate($entityManager)
+$ticket = getTicket($entityManager);
+authenticateTeamLead($entityManager, $ticket->getTeam());
+
+function handleUpdate($entityManager, Ticket $ticket)
 {
-    $ticket = getTicket($entityManager);
     requireParams(["title", "priority", "assignee", "deadline"]);
 
     $title = $_POST["title"];
@@ -33,15 +36,14 @@ function handleUpdate($entityManager)
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    handleUpdate($entityManager);
-    return;
+    handleUpdate($entityManager, $ticket);
+    exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] !== "GET") {
-    exit("Unsupported HTTP method");
+    http_response_code(405);
+    exit;
 }
-
-$ticket = getTicket($entityManager);
 
 $status = $ticket->getClosedAt() !== null ? "Closed" : "Open";
 $assignee = $ticket->getAssignee();

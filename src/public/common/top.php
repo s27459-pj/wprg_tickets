@@ -32,8 +32,10 @@ if (!isset($pageTitle)) {
         <nav>
             <ul>
                 <li><a href="index.php">Backlog</a></li>
-                <li><a href="new_ticket.php">New Ticket</a></li>
                 <?php if ($activeUser !== null): ?>
+                    <?php if ($activeUser->isTeamLead()): ?>
+                        <li><a href="new_ticket.php">New Ticket</a></li>
+                    <?php endif ?>
                     <?php if ($activeUser->isAdmin()): ?>
                         <li><a href="admin.php">Admin</a></li>
                     <?php endif ?>

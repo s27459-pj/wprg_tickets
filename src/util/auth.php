@@ -19,6 +19,22 @@ function authenticate($entityManager): User
     return $user;
 }
 
+function authenticateOptional($entityManager): ?User
+{
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    if (!isset($_SESSION["user"])) {
+        return null;
+    }
+    $userId = $_SESSION["user"];
+    $user = $entityManager->find(User::class, $userId);
+    if ($user === null) {
+        return null;
+    }
+    return $user;
+}
+
 function authenticateAdmin($entityManager): User
 {
 
@@ -30,10 +46,14 @@ function authenticateAdmin($entityManager): User
     return $user;
 }
 
-function authenticateTeamLead($entityManager): User
+function authenticateTeamLead($entityManager, ?Team $team = null): User
 {
     $user = authenticate($entityManager);
     if (!$user->isTeamLead()) {
+        http_response_code(403);
+        exit("Forbidden");
+    }
+    if ($team !== null && $user->getTeam() !== $team) {
         http_response_code(403);
         exit("Forbidden");
     }

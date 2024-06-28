@@ -1,18 +1,21 @@
 <?php
 require_once __DIR__ . "/../../bootstrap.php";
+require_once __DIR__ . "/../util/util.php";
+require_once __DIR__ . "/../util/auth.php";
+require_once __DIR__ . "/../util/validation.php";
 
-function handleCreate($entityManager)
+$team = authenticateTeamLead($entityManager)->getTeam();
+
+function handleCreate($entityManager, $team)
 {
-    // TODO)) Validation
+    requireParams(["title", "priority", "deadline"]);
     $title = $_POST["title"];
     $priority = Priority::from($_POST["priority"]);
     $assigneeId = $_POST["assignee"];
     $deadline = new DateTime($_POST["deadline"]);
 
     $ticket = new Ticket();
-    // TODO)) Auth team lead
-    // TODO)) Team
-    $ticket->create($title, $priority, null, $deadline);
+    $ticket->create($title, $priority, $team, $deadline);
     if ($assigneeId !== "-1") {
         $assignee = $entityManager->find(User::class, $assigneeId);
         $ticket->setAssignee($assignee);
@@ -26,13 +29,13 @@ function handleCreate($entityManager)
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    handleCreate($entityManager);
-    return;
+    handleCreate($entityManager, $team);
+    exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] !== "GET") {
     http_response_code(405);
-    return;
+    exit;
 }
 
 $users = $entityManager->getRepository(User::class)->findAll();
@@ -40,7 +43,7 @@ $users = $entityManager->getRepository(User::class)->findAll();
 
 <?php $pageTitle = "New Ticket";
 include (__DIR__ . "/common/top.php"); ?>
-<h1>New Ticket</h1>
+<h1>New Ticket (<?php echo $team->getName() ?>)</h1>
 <form action="new_ticket.php" method="post">
     <div class="form-field">
         <label for="title">Title</label>

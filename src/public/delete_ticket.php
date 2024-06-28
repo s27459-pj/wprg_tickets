@@ -1,10 +1,13 @@
 <?php
 require_once __DIR__ . "/../../bootstrap.php";
+require_once __DIR__ . "/../util/auth.php";
 require_once __DIR__ . "/../util/ticket.php";
 
-function handleDelete($entityManager)
+$ticket = getTicket($entityManager);
+authenticateTeamLead($entityManager, $ticket->getTeam());
+
+function handleDelete($entityManager, Ticket $ticket)
 {
-    $ticket = getTicket($entityManager);
     $assignee = $ticket->getAssignee();
     if ($assignee !== null) {
         $assignee->removeAssignedTicket($ticket);
@@ -19,15 +22,14 @@ function handleDelete($entityManager)
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    handleDelete($entityManager);
-    return;
+    handleDelete($entityManager, $ticket);
+    exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] !== "GET") {
-    exit("Unsupported HTTP method");
+    http_response_code(405);
+    exit;
 }
-
-$ticket = getTicket($entityManager);
 ?>
 
 
