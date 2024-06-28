@@ -75,6 +75,11 @@ class Ticket
         return $this->id;
     }
 
+    public function getStatus(): string
+    {
+        return $this->getClosedAt() !== null ? "Closed" : "Open";
+    }
+
     public function getTitle(): string
     {
         return $this->title;
@@ -127,6 +132,11 @@ class Ticket
     public function getClosedAt(): ?DateTime
     {
         return $this->closed;
+    }
+
+    public function close(): void
+    {
+        $this->closed = new DateTime();
     }
 
     public function getDeadline(): ?DateTime

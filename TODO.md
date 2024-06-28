@@ -27,7 +27,7 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
     - [x] Przypisywanie osób do ticketów
   - [ ] Użytkownik
     - [ ] Dodawanie komentarzy do ticketów (w swoim dziale)
-    - [ ] Oznaczanie ticketu za wykonany
+    - [x] Oznaczanie ticketu za wykonany
   - [x] Niezalogowany
     - [x] Przeglądanie ticketów
     - [x] Logowanie

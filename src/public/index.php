@@ -19,6 +19,7 @@ include (__DIR__ . "/common/top.php"); ?>
         <th>Priority</th>
         <th>Team</th>
         <th>Assignee</th>
+        <th>Status</th>
         <th>Deadline</th>
     </tr>
     <?php foreach ($tickets as $ticket):
@@ -41,6 +42,7 @@ include (__DIR__ . "/common/top.php"); ?>
                     Unassigned
                 <?php endif ?>
             </td>
+            <td><?php echo $ticket->getStatus() ?></td>
             <td><?php echo $deadline->format('Y-m-d H:i') ?></td>
         </tr>
     <?php endforeach ?>

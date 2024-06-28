@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "GET") {
 $user = authenticateOptional($entityManager);
 $ticket = getTicket($entityManager);
 
-$status = $ticket->getClosedAt() !== null ? "Closed" : "Open";
+$status = $ticket->getStatus();
 $assignee = $ticket->getAssignee();
 $assigneeString = $assignee !== null ? $assignee->getUsername() : "Unassigned";
 $closedAt = $ticket->getClosedAt();
@@ -23,9 +23,12 @@ $closedAt = $ticket->getClosedAt();
 include (__DIR__ . "/common/top.php"); ?>
 <h1><?php echo $ticket->getTitle() ?></h1>
 
-<?php if ($user !== null && $user->isTeamLead() && $user->getTeam() === $ticket->getTeam()): ?>
-    <a href="edit_ticket.php?id=<?php echo $ticket->getId() ?>">edit</a>
-    <a href="delete_ticket.php?id=<?php echo $ticket->getId() ?>">delete</a>
+<?php if ($user !== null && $user->getTeam() === $ticket->getTeam()): ?>
+    <a href="mark_ticket_done.php?id=<?php echo $ticket->getId() ?>">mark done</a>
+    <?php if ($user->isTeamLead()): ?>
+        <a href="edit_ticket.php?id=<?php echo $ticket->getId() ?>">edit</a>
+        <a href="delete_ticket.php?id=<?php echo $ticket->getId() ?>">delete</a>
+    <?php endif ?>
 <?php endif ?>
 
 <p>Status: <?php echo $status ?></p>

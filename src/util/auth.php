@@ -59,3 +59,13 @@ function authenticateTeamLead($entityManager, ?Team $team = null): User
     }
     return $user;
 }
+
+function authenticateTeamMember($entityManager, Team $team): User
+{
+    $user = authenticate($entityManager);
+    if ($user->getTeam() !== $team) {
+        http_response_code(403);
+        exit("Forbidden");
+    }
+    return $user;
+}
