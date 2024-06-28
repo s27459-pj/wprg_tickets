@@ -16,9 +16,7 @@ function handleDelete($entityManager, Ticket $ticket)
     $entityManager->remove($ticket);
     $entityManager->flush();
 
-    echo "<p>Deleted Ticket with ID {$ticket->getId()}";
-    echo "<a href=\"index.php\">Back to Index</a>";
-    echo "</p>";
+    header("Location: index.php");
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {

@@ -33,7 +33,7 @@ if (!isset($pageTitle)) {
             <ul>
                 <li><a href="index.php">Backlog</a></li>
                 <?php if ($activeUser !== null): ?>
-                    <?php if ($activeUser->isTeamLead()): ?>
+                    <?php if ($activeUser->isTeamLead() || $activeUser->isAdmin()): ?>
                         <li><a href="new_ticket.php">New Ticket</a></li>
                     <?php endif ?>
                     <?php if ($activeUser->isAdmin()): ?>

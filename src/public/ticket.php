@@ -23,9 +23,9 @@ $closedAt = $ticket->getClosedAt();
 include (__DIR__ . "/common/top.php"); ?>
 <h1><?php echo $ticket->getTitle() ?></h1>
 
-<?php if ($user !== null && $user->getTeam() === $ticket->getTeam()): ?>
+<?php if ($user !== null && ($user->getTeam() === $ticket->getTeam()) || $user->isAdmin()): ?>
     <a href="mark_ticket_done.php?id=<?php echo $ticket->getId() ?>">mark done</a>
-    <?php if ($user->isTeamLead()): ?>
+    <?php if ($user->isTeamLead() || $user->isAdmin()): ?>
         <a href="edit_ticket.php?id=<?php echo $ticket->getId() ?>">edit</a>
         <a href="delete_ticket.php?id=<?php echo $ticket->getId() ?>">delete</a>
     <?php endif ?>

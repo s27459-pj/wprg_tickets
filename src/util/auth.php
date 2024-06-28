@@ -49,6 +49,9 @@ function authenticateAdmin($entityManager): User
 function authenticateTeamLead($entityManager, ?Team $team = null): User
 {
     $user = authenticate($entityManager);
+    if ($user->isAdmin()) {
+        return $user;
+    }
     if (!$user->isTeamLead()) {
         http_response_code(403);
         exit("Forbidden");
@@ -63,6 +66,9 @@ function authenticateTeamLead($entityManager, ?Team $team = null): User
 function authenticateTeamMember($entityManager, Team $team): User
 {
     $user = authenticate($entityManager);
+    if ($user->isAdmin()) {
+        return $user;
+    }
     if ($user->getTeam() !== $team) {
         http_response_code(403);
         exit("Forbidden");
