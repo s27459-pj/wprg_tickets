@@ -9,6 +9,7 @@ function handleDelete($entityManager)
     if ($assignee !== null) {
         $assignee->removeAssignedTicket($ticket);
     }
+    $ticket->delete();
     $entityManager->remove($ticket);
     $entityManager->flush();
 

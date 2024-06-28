@@ -6,9 +6,9 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 if (isset($_SESSION["user"])) {
     $userId = $_SESSION["user"];
-    $user = $entityManager->find(User::class, $userId);
+    $activeUser = $entityManager->find(User::class, $userId);
 } else {
-    $user = null;
+    $activeUser = null;
 }
 
 if (!isset($pageTitle)) {
@@ -33,8 +33,11 @@ if (!isset($pageTitle)) {
             <ul>
                 <li><a href="index.php">Backlog</a></li>
                 <li><a href="new_ticket.php">New Ticket</a></li>
-                <?php if ($user !== null): ?>
-                    <li>Logged in as <?php echo $user->getUsername() ?></li>
+                <?php if ($activeUser !== null): ?>
+                    <?php if ($activeUser->isAdmin()): ?>
+                        <li><a href="admin.php">Admin</a></li>
+                    <?php endif ?>
+                    <li>Logged in as <?php echo $activeUser->getUsername() ?></li>
                     <li><a href="logout.php">Log out</a></li>
                 <?php else: ?>
                     <li><a href="login.php">Log in</a></li>

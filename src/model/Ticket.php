@@ -17,7 +17,8 @@ class Ticket
     #[ORM\Column(type: 'string', enumType: Priority::class)]
     private Priority $priority = Priority::MEDIUM;
 
-    // TODO)) Team
+    #[ORM\ManyToOne(targetEntity: Team::class, inversedBy: 'tickets')]
+    private Team $team;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'assignedTickets')]
     private ?User $assignee = null;
@@ -43,25 +44,30 @@ class Ticket
     public function create(
         string $title,
         Priority $priority,
+        Team $team,
         DateTime $deadline
-    ): self {
+    ): void {
         $this->title = $title;
         $this->priority = $priority;
+        $this->team = $team;
         $this->deadline = $deadline;
 
-        return $this;
+        $this->team->addTicket($this);
     }
 
     public function update(
         string $title,
         Priority $priority,
         DateTime $deadline
-    ): self {
+    ): void {
         $this->title = $title;
         $this->priority = $priority;
         $this->deadline = $deadline;
+    }
 
-        return $this;
+    public function delete(): void
+    {
+        $this->team->removeTicket($this);
     }
 
     public function getId(): ?int
@@ -79,6 +85,11 @@ class Ticket
         return $this->priority;
     }
 
+    public function getTeam(): ?Team
+    {
+        return $this->team;
+    }
+
     public function getAssignee(): ?User
     {
         return $this->assignee;
@@ -92,6 +103,7 @@ class Ticket
             $this->assignee = null;
             return;
         }
+
         // Keep current assignee
         if ($assignee === $this->assignee) {
             return;

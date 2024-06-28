@@ -12,7 +12,7 @@ class User
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: 'string', unique: true)]
     private string $username;
 
     #[ORM\Column(type: 'string')]
@@ -21,7 +21,8 @@ class User
     #[ORM\Column(type: 'string', enumType: Role::class)]
     private Role $role = Role::USER;
 
-    // TODO)) Team
+    #[ORM\ManyToOne(targetEntity: Team::class, inversedBy: 'users')]
+    private ?Team $team = null;
 
     /** @var Collection<int, Ticket> */
     #[ORM\OneToMany(targetEntity: Ticket::class, mappedBy: 'assignee')]
@@ -32,13 +33,22 @@ class User
         $this->assignedTickets = new ArrayCollection();
     }
 
-    public function create(string $username, string $password, Role $role): self
+    public function create(string $username, string $password, Role $role): void
     {
         $this->username = $username;
-        $this->password = $password;
+        $this->password = password_hash($password, PASSWORD_BCRYPT);
         $this->role = $role;
+    }
 
-        return $this;
+    public function update(string $username, Role $role): void
+    {
+        $this->username = $username;
+        $this->role = $role;
+    }
+
+    public function delete(): void
+    {
+        $this->team->removeUser($this);
     }
 
     public function getId(): ?int
@@ -59,6 +69,50 @@ class User
     public function getRole(): Role
     {
         return $this->role;
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === Role::ADMIN;
+    }
+
+    public function isTeamLead(): bool
+    {
+        return $this->role === Role::TEAM_LEAD;
+    }
+
+    public function getTeam(): ?Team
+    {
+        return $this->team;
+    }
+
+    public function setTeam(?Team $team): void
+    {
+        // Remove from team
+        if ($team === null && $this->team !== null) {
+            $this->team->removeUser($this);
+            $this->team = null;
+            return;
+        }
+
+        // Keep current team
+        if ($team === $this->team) {
+            return;
+        }
+
+        // Switch teams
+        // Leave current team
+        if ($this->team !== null) {
+            $this->team->removeUser($this);
+        }
+        // Join new team
+        $this->team = $team;
+        $this->team->addUser($this);
+    }
+
+    public function getAssignedTickets(): Collection
+    {
+        return $this->assignedTickets;
     }
 
     public function addAssignedTicket(Ticket $ticket): void

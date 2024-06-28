@@ -10,8 +10,7 @@ Do wystawienia ticketu wymagane jest zalogowanie, natomiast niezalogowani użytk
 
 Na stronie dostępny jest panel administracyjny. Istnieją różne typy konta:
 - administrator (może wszystko - dodawać, usuwać, edytować tickety, komentarze i działy)
-- właściciel działu (może dodawać, usuwać i edytować tickety ze swojego działu, może dodawać komentarze i przypisywać osoby, może
-zresetować swoje hasło)
+- właściciel działu (może dodawać, usuwać i edytować tickety ze swojego działu, może dodawać komentarze i przypisywać osoby, może zresetować swoje hasło)
 - użytkownik (może dodawać tickety i komentarze, może rozwiązywać swoje tickety oraz może zresetować swoje hasło).
 
 Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w bazie danych, a załączniki jako osobne pliki.
@@ -19,14 +18,15 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
 # TODO
 
 - [ ] Role użytkowników
-  - [ ] Administrator
-    - [ ] Tworzenie działów
-    - [ ] Dodawanie użytkowników do działów
+  - [x] Administrator
+    - [x] Tworzenie działów
+    - [x] Tworzenie użytkowników
+    - [x] Dodawanie użytkowników do działów
   - [ ] Kierownik działu
     - [x] Tworzenie/edytowanie/usuwanie ticketów (w swoim dziale)
-    - [x] Przypisywanie osób do ticketów
+    - [ ] Przypisywanie osób do ticketów
   - [ ] Użytkownik
-    - [ ] Dodawanie komentarzy do ticketów
+    - [ ] Dodawanie komentarzy do ticketów (w swoim dziale)
     - [ ] Oznaczanie ticketu za wykonany
     - [ ] Reset hasła
   - [x] Niezalogowany
@@ -34,7 +34,7 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
     - [x] Logowanie
     - [x] Wylogowanie
 - [ ] Permisje do odpowiednich akcji
-- [ ] Ticket
+- [x] Ticket
   - tytuł
   - priorytet
   - dział
@@ -50,9 +50,13 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
   - [ ] Dla działu
   - [ ] Dla priorytetu
   - [ ] Dla konkretnego dnia
-- [ ] Panel administracyjny
-  - [ ] Zarządzanie kontami
-  - [ ] Zarządzanie działami
+- [x] Panel administracyjny
+  - [x] Zarządzanie kontami
+    - [x] Dodawanie
+    - [x] Edytowanie
+  - [x] Zarządzanie działami
+    - [x] Dodawanie
+    - [x] Edytowanie
 
 # Wymagania funkcjonalne
 - [x] użycie formularzy i ich funkcjonalności - odbieranie i przetwarzanie danych
@@ -69,7 +73,7 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
 - [ ] hostowanie strony na serwerze zewnętrznym (dodatkowe)
 
 # Wymagania niefunkcjonalne
-- [ ] Przejrzysty kod - np. rozbicie na pliki, klasy, metody, stosowanie pętli zamiast printowania na sztywno
+- [x] Przejrzysty kod - np. rozbicie na pliki, klasy, metody, stosowanie pętli zamiast printowania na sztywno
 - [ ] Brak widocznych błędów komunikowanych przez język
 - [ ] Projekt się “kompiluje” - brak problemów przy oddawaniu projektu
-- [ ] “Ładny”/przejrzysty projekt - np. ładnie sformatowany formularz, jednolity; widok strony bez zbędnych elementów, czy rozjeżdżających się komponentówpp
+- [ ] “Ładny”/przejrzysty projekt - np. ładnie sformatowany formularz, jednolity; widok strony bez zbędnych elementów, czy rozjeżdżających się komponentów

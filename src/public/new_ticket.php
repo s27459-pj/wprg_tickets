@@ -5,24 +5,24 @@ function handleCreate($entityManager)
 {
     // TODO)) Validation
     $title = $_POST["title"];
-    $priority = $_POST["priority"];
-    $assignee = $_POST["assignee"];
+    $priority = Priority::from($_POST["priority"]);
+    $assigneeId = $_POST["assignee"];
     $deadline = new DateTime($_POST["deadline"]);
 
     $ticket = new Ticket();
-    $ticket->create($title, Priority::from($priority), $deadline);
-    if ($assignee !== "-1") {
-        $user = $entityManager->find(User::class, $assignee);
-        $ticket->setAssignee($user);
+    // TODO)) Auth team lead
+    // TODO)) Team
+    $ticket->create($title, $priority, null, $deadline);
+    if ($assigneeId !== "-1") {
+        $assignee = $entityManager->find(User::class, $assigneeId);
+        $ticket->setAssignee($assignee);
     }
 
     $entityManager->persist($ticket);
     $entityManager->flush();
 
-    echo "<p>Created Ticket with ID {$ticket->getId()}";
-    echo "<a href=\"ticket.php?id={$ticket->getId()}\">View Ticket</a>";
-    echo "</p>";
-
+    header("Location: ticket.php?id={$ticket->getId()}");
+    exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
