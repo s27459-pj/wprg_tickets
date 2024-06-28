@@ -47,8 +47,8 @@ $tickets = $ticketRepository->findAll();
     <a href="new_ticket.php">New Ticket</a>
     <p>
         <?php if ($user !== null): ?>
-            <span>Logged in as <?php echo $user->getUsername() ?></span>
-            <!-- TODO: Logout -->
+            <span>Logged in as <?php echo $user->getUsername() ?> (<?php echo $user->getRole()->value ?>)</span>
+            <span><a href="logout.php">Log out</a></span>
         <?php else: ?>
             <a href="login.php">Login</a>
         <?php endif ?>

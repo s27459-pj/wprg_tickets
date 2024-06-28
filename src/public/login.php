@@ -21,6 +21,7 @@ function handleLogin($entityManager)
 session_start();
 if (isset($_SESSION["user"])) {
     echo "You're already logged in. ";
+    echo "<a href=\"logout.php\">Log out</a> ";
     echo "<a href=\"index.php\">Go back</a> ";
     exit;
 }

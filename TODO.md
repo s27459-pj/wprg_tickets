@@ -32,7 +32,7 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
   - [x] Niezalogowany
     - [x] Przeglądanie ticketów
     - [x] Logowanie
-    - [ ] Wylogowanie
+    - [x] Wylogowanie
 - [ ] Permisje do odpowiednich akcji
 - [ ] Ticket
   - tytuł
@@ -55,17 +55,17 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
   - [ ] Zarządzanie działami
 
 # Wymagania funkcjonalne
-- [ ] użycie formularzy i ich funkcjonalności - odbieranie i przetwarzanie danych
+- [x] użycie formularzy i ich funkcjonalności - odbieranie i przetwarzanie danych
 - [ ] zapisywanie do pliku danych - np. zrzut bazy danych, zapis danych z formularza itp.
-- [ ] zapisywanie do bazy danych
-- [ ] odczytywanie z bazy danych
-- [ ] update i usuwanie z bazy danych
-- [ ] system logowania
-- [ ] użycie sesji w projekcie, nie sztuczne, tylko takie by pozwalało realnie zobrazować ich funkcjonalność
+- [x] zapisywanie do bazy danych
+- [x] odczytywanie z bazy danych
+- [x] update i usuwanie z bazy danych
+- [x] system logowania
+- [x] użycie sesji w projekcie, nie sztuczne, tylko takie by pozwalało realnie zobrazować ich funkcjonalność
 - [ ] użycie ciasteczek - utworzenie oraz realne skorzystanie z nich
-- [ ] użycie pętli, instrukcje warunkowe, tablice, funkcji
-- [ ] projekt realizujemy w oparciu o programowanie obiektowe
-- [ ] użycie czegoś z PHP, co nie było pokazywane na zajęciach - biblioteka, narzędzie, konstrukcja, temat (wymagane omówienie) (dodatkowe)
+- [x] użycie pętli, instrukcje warunkowe, tablice, funkcji
+- [x] projekt realizujemy w oparciu o programowanie obiektowe
+- [x] użycie czegoś z PHP, co nie było pokazywane na zajęciach - biblioteka, narzędzie, konstrukcja, temat (wymagane omówienie) (dodatkowe)
 - [ ] hostowanie strony na serwerze zewnętrznym (dodatkowe)
 
 # Wymagania niefunkcjonalne
