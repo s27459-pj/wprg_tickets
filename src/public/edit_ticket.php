@@ -68,8 +68,8 @@ $users = $entityManager->getRepository(User::class)->findAll();
     <a href="ticket.php?id=<?php echo $ticket->getId() ?>">cancel</a>
     <form action="edit_ticket.php?id=<?php echo $ticket->getId() ?>" method="post">
         <div class="form-field">
-            <label for="title">Title</label><br>
-            <input type="text" id="title" name="title" value="<?php echo $ticket->getTitle() ?>"><br>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" value="<?php echo $ticket->getTitle() ?>" autofocus>
         </div>
         <div class="form-field">
             <label for="priority">Priority</label>
@@ -105,8 +105,8 @@ $users = $entityManager->getRepository(User::class)->findAll();
             </select>
         </div>
         <div class="form-field">
-            <label for="deadline">Deadline</label><br>
-            <input type="datetime-local" id="deadline" name="deadline" value="<?php echo $deadline ?>"><br>
+            <label for="deadline">Deadline</label>
+            <input type="datetime-local" id="deadline" name="deadline" value="<?php echo $deadline ?>">
         </div>
         <input type="submit" value="Update Ticket">
     </form>

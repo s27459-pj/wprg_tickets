@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "GET") {
     <form action="login.php" method="post">
         <div class="form-field">
             <label for="username">Username</label>
-            <input type="text" id="username" name="username">
+            <input type="text" id="username" name="username" autofocus>
         </div>
         <div class="form-field">
             <label for="password">Password</label>

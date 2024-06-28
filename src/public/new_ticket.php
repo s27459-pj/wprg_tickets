@@ -51,8 +51,8 @@ $users = $entityManager->getRepository(User::class)->findAll();
     <h1>New Ticket</h1>
     <form action="new_ticket.php" method="post">
         <div class="form-field">
-            <label for="title">Title</label><br>
-            <input type="text" id="title" name="title"><br>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" autofocus>
         </div>
         <div class="form-field">
             <label for="priority">Priority</label>
@@ -74,8 +74,8 @@ $users = $entityManager->getRepository(User::class)->findAll();
             </select>
         </div>
         <div class="form-field">
-            <label for="deadline">Deadline</label><br>
-            <input type="datetime-local" id="deadline" name="deadline"><br>
+            <label for="deadline">Deadline</label>
+            <input type="datetime-local" id="deadline" name="deadline">
         </div>
         <input type="submit" value="Create Ticket">
     </form>
