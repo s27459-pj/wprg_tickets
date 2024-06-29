@@ -45,10 +45,10 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
   - data deadline
 - [ ] Przechowywanie załączników w katalogu
 - [x] Formularz do tworzenia nowego ticketu
-- [ ] Przeglądanie ticketów
+- [x] Przeglądanie ticketów
   - [x] Dla użytkownika
   - [x] Dla działu
-  - [ ] Dla priorytetu
+  - [x] Dla priorytetu
   - [x] Dla konkretnego dnia
 - [x] Panel administracyjny
   - [x] Zarządzanie kontami

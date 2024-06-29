@@ -91,9 +91,12 @@ function getTickets($entityManager, ViewType $view)
         $dql = "SELECT t FROM Ticket t WHERE t.team = {$team->getId()}";
         return $entityManager->createQuery($dql)->getResult();
     } else if ($view === ViewType::PRIORITY) {
-        // TODO)) Filtering by priority
-        http_response_code(501);
-        exit;
+        $priority = getParam("priority");
+        $qb = $entityManager->createQueryBuilder();
+        $qb->select('t')->from(Ticket::class, 't')
+            ->where("t.priority = :priority")
+            ->setParameter("priority", $priority);
+        return $qb->getQuery()->getResult();
     } else if ($view === ViewType::DEADLINE) {
         $deadline = getViewDeadline();
         $start = $deadline->format("Y-m-d");
@@ -181,12 +184,18 @@ include (__DIR__ . "/common/top.php"); ?>
     </select>
     <input type="submit" value="Filter">
 </form>
-<!-- TODO)) Priority -->
-<!-- <form action="index.php">
+<form action="index.php">
     <span>With Priority</span>
     <input type="hidden" name="view" value="priority">
+    <select name="priority">
+        <?php foreach (Priority::cases() as $priority): ?>
+            <option value="<?php echo $priority->value ?>">
+                <?php echo getEnumDisplayName($priority) ?>
+            </option>
+        <?php endforeach ?>
+    </select>
     <input type="submit" value="Filter">
-</form> -->
+</form>
 <form action="index.php">
     <span>For a given day</span>
     <input type="hidden" name="view" value="deadline">
