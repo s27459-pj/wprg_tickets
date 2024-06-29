@@ -25,8 +25,8 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
   - [x] Kierownik działu
     - [x] Tworzenie/edytowanie/usuwanie ticketów (w swoim dziale)
     - [x] Przypisywanie osób do ticketów
-  - [ ] Użytkownik
-    - [ ] Dodawanie komentarzy do ticketów (w swoim dziale)
+  - [x] Użytkownik
+    - [x] Dodawanie komentarzy do ticketów (w swoim dziale)
     - [x] Oznaczanie ticketu za wykonany
   - [x] Niezalogowany
     - [x] Przeglądanie ticketów

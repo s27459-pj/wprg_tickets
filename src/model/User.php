@@ -28,9 +28,14 @@ class User
     #[ORM\OneToMany(targetEntity: Ticket::class, mappedBy: 'assignee')]
     private Collection $assignedTickets;
 
+    /** @var Collection<int, Comment> */
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'author')]
+    private Collection $comments;
+
     public function __construct()
     {
         $this->assignedTickets = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function create(string $username, string $password, Role $role): void
@@ -123,6 +128,11 @@ class User
     public function removeAssignedTicket(Ticket $ticket): void
     {
         $this->assignedTickets->removeElement($ticket);
+    }
+
+    public function addComment(Comment $comment): void
+    {
+        $this->comments[] = $comment;
     }
 }
 

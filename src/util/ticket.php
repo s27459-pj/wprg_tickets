@@ -1,12 +1,13 @@
 <?php
 require_once __DIR__ . "/../../bootstrap.php";
 
-function getTicket($entityManager): Ticket
+function getTicket($entityManager, ?string $paramName = null): Ticket
 {
-    if (!isset($_GET["id"])) {
-        exit("Missing required parameter: id");
+    $param = $paramName ?? "id";
+    if (!isset($_GET[$param])) {
+        exit("Missing required parameter: $param");
     }
-    $ticketId = $_GET["id"];
+    $ticketId = $_GET[$param];
     $ticket = $entityManager->find(Ticket::class, $ticketId);
     if ($ticket === null) {
         exit("Ticket not found");
