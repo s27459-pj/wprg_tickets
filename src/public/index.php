@@ -15,6 +15,7 @@ enum ViewType: string
     case USER = "user";
     case TEAM = "team";
     case PRIORITY = "priority";
+    case DEADLINE = "deadline";
 }
 
 
@@ -51,6 +52,13 @@ function getViewTeam($entityManager): Team
     return $team;
 }
 
+function getViewDeadline(): DateTime
+{
+    $deadline = getParam("deadline");
+    $date = (new DateTime($deadline))->format("Y-m-d");
+    return new DateTime($date);
+}
+
 function getViewName($entityManager, ViewType $view)
 {
     if ($view === ViewType::ALL) {
@@ -64,6 +72,9 @@ function getViewName($entityManager, ViewType $view)
     } else if ($view === ViewType::PRIORITY) {
         $priority = ucwords(str_replace("_", " ", getParam("priority")));
         return "{$priority} priority Tickets";
+    } else if ($view === ViewType::DEADLINE) {
+        $deadline = getViewDeadline();
+        return "Tickets due by {$deadline->format('Y-m-d')}";
     }
 }
 
@@ -83,6 +94,17 @@ function getTickets($entityManager, ViewType $view)
         // TODO)) Filtering by priority
         http_response_code(501);
         exit;
+    } else if ($view === ViewType::DEADLINE) {
+        $deadline = getViewDeadline();
+        $start = $deadline->format("Y-m-d");
+        $end = date('Y-m-d', strtotime($start . ' + 1 day'));
+        $qb = $entityManager->createQueryBuilder();
+        $qb->select('t')->from(Ticket::class, 't')
+            ->where("t.deadline >= :start")
+            ->andWhere("t.deadline < :end")
+            ->setParameter("start", $start)
+            ->setParameter("end", $end);
+        return $qb->getQuery()->getResult();
     }
 }
 
@@ -165,3 +187,9 @@ include (__DIR__ . "/common/top.php"); ?>
     <input type="hidden" name="view" value="priority">
     <input type="submit" value="Filter">
 </form> -->
+<form action="index.php">
+    <span>For a given day</span>
+    <input type="hidden" name="view" value="deadline">
+    <input type="datetime" name="deadline">
+    <input type="submit" value="Filter">
+</form>

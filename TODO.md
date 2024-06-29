@@ -49,7 +49,7 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
   - [x] Dla użytkownika
   - [x] Dla działu
   - [ ] Dla priorytetu
-  - [ ] Dla konkretnego dnia
+  - [x] Dla konkretnego dnia
 - [x] Panel administracyjny
   - [x] Zarządzanie kontami
     - [x] Dodawanie

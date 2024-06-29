@@ -99,7 +99,7 @@ include (__DIR__ . "/common/top.php"); ?>
     </div>
     <div class="form-field">
         <label for="deadline">Deadline</label>
-        <input type="datetime-local" id="deadline" name="deadline" value="<?php echo $deadline ?>">
+        <input type="datetime" id="deadline" name="deadline" value="<?php echo $deadline ?>">
     </div>
     <input type="submit" value="Update Ticket">
 </form>
