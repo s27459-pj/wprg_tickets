@@ -74,6 +74,6 @@ Tickety, komentarze i informacje o użytkownikach powinny być przechowywane w b
 
 # Wymagania niefunkcjonalne
 - [x] Przejrzysty kod - np. rozbicie na pliki, klasy, metody, stosowanie pętli zamiast printowania na sztywno
-- [ ] Brak widocznych błędów komunikowanych przez język
-- [ ] Projekt się “kompiluje” - brak problemów przy oddawaniu projektu
-- [ ] “Ładny”/przejrzysty projekt - np. ładnie sformatowany formularz, jednolity; widok strony bez zbędnych elementów, czy rozjeżdżających się komponentów
+- [x] Brak widocznych błędów komunikowanych przez język
+- [x] Projekt się “kompiluje” - brak problemów przy oddawaniu projektu
+- [x] “Ładny”/przejrzysty projekt - np. ładnie sformatowany formularz, jednolity; widok strony bez zbędnych elementów, czy rozjeżdżających się komponentów

@@ -1,6 +1,4 @@
 <?php
-use Doctrine\ORM\Query\ResultSetMapping;
-
 require_once __DIR__ . "/../../bootstrap.php";
 require_once __DIR__ . "/../util/util.php";
 
@@ -17,7 +15,6 @@ enum ViewType: string
     case PRIORITY = "priority";
     case DEADLINE = "deadline";
 }
-
 
 if (!isset($_GET["view"])) {
     header("Location: index.php?view=" . ViewType::ALL->value);

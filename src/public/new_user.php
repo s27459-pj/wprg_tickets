@@ -1,4 +1,6 @@
 <?php
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+
 require_once __DIR__ . "/../../bootstrap.php";
 require_once __DIR__ . "/../util/util.php";
 require_once __DIR__ . "/../util/auth.php";
@@ -20,7 +22,11 @@ function handleCreate($entityManager)
     }
 
     $entityManager->persist($user);
-    $entityManager->flush();
+    try {
+        $entityManager->flush();
+    } catch (UniqueConstraintViolationException) {
+        exit("This username is already taken.");
+    }
 
     header("Location: admin.php");
 }
