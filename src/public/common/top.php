@@ -22,6 +22,7 @@ if (!isset($pageTitle)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="common/favicon.ico">
     <link rel="stylesheet" href="common/index.css">
     <title><?php echo $pageTitle ?></title>
 </head>
